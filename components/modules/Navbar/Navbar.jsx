@@ -1,8 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "@/styles/Navbar.module.css";
 import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/router";
 
 export default function Navbar() {
+  const [search, setSearch] = useState("");
+
+  const router = useRouter();
+
+  const searchHanlder = () => {
+    if (search.trim()) {
+      router.push(`/search?q=${search}`);
+    }
+  };
+
+  const searchHanlderWithEnter = (e) => {
+    if (e.key === "Enter") {
+      if (search.trim()) {
+        router.push(`/search?q=${search}`);
+      }
+    }
+  };
+
   return (
     <div className={`container-fluid p-0 ${styles.nav_bar}`}>
       <nav
@@ -16,6 +37,19 @@ export default function Navbar() {
             Next-Coffee
           </h1>
         </Link>
+        <input
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          name="search"
+          onKeyDown={searchHanlderWithEnter}
+          className="bg-transparent text-white border-0 outline-0 border-bottom"
+        />
+        <FontAwesomeIcon
+          className="text-white"
+          icon={faSearch}
+          onClick={searchHanlder}
+        />
         <button
           type="button"
           className={`${styles.navbar_toggler}`}
@@ -35,13 +69,13 @@ export default function Navbar() {
             >
               Home
             </Link>
-            <Link href="/" className={`${styles.nav_link}`}>
+            <Link href="/about" className={`${styles.nav_link}`}>
               About
             </Link>
-            <Link href="/" className={`${styles.nav_link}`}>
+            <Link href="/services" className={`${styles.nav_link}`}>
               Service
             </Link>
-            <Link href="/" className={`${styles.nav_link}`}>
+            <Link href="/menu" className={`${styles.nav_link}`}>
               Menu
             </Link>
             <div className={`${styles.dropdown}`}>
@@ -53,15 +87,15 @@ export default function Navbar() {
                 Pages
               </Link>
               <div className={`${styles.dropdown_menu} text-capitalize`}>
-                <Link href="/" className={`${styles.dropdown_item}`}>
+                <Link href="/reservation" className={`${styles.dropdown_item}`}>
                   Reservation
                 </Link>
-                <Link href="/" className={`${styles.dropdown_item}`}>
+                <Link href="/testimonial" className={`${styles.dropdown_item}`}>
                   Testimonial
                 </Link>
               </div>
             </div>
-            <Link href="/" className={`${styles.nav_link}`}>
+            <Link href="/contact" className={`${styles.nav_link}`}>
               Contact
             </Link>
           </div>

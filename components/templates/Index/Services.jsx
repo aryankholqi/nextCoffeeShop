@@ -21,7 +21,7 @@ export const Services = ({ services }) => {
               key={item.id}
               title={item.title}
               description={item.description}
-              image={item.img}
+              img={item.img}
               icon={item.icon}
             />
           ))}

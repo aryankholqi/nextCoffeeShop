@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 export default function ProductCard({ item }) {
@@ -12,7 +13,9 @@ export default function ProductCard({ item }) {
         <h5 className="menu-price">${item.price}</h5>
       </div>
       <div className="col-8 col-sm-9">
-        <h4>{item.title}</h4>
+        <Link href={`/products/${item.id}`}>
+          <h4>{item.title}</h4>
+        </Link>
         <p className="m-0">{item.description}</p>
       </div>
     </div>
