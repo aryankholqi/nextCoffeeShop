@@ -2,7 +2,7 @@ import ServiceCard from "@/components/modules/SerivceCard/ServiceCard";
 import { serviceItems } from "@/constants/serviceItems";
 import React from "react";
 
-export const Services = () => {
+export const Services = ({ services }) => {
   return (
     <div class="container-fluid pt-5">
       <div class="container">
@@ -16,7 +16,7 @@ export const Services = () => {
           <h1 class="display-4">Fresh & Organic Beans</h1>
         </div>
         <div class="row">
-          {serviceItems.map((item) => (
+          {services.map((item) => (
             <ServiceCard
               key={item.id}
               title={item.title}
