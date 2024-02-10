@@ -1,14 +1,12 @@
+import Comments from "@/components/templates/Product/Comments";
 import ProductsDetails from "@/components/templates/Product/ProductDetails";
-import Comments from "@/components/templates/Testimonial/Comments";
-import { useRouter } from "next/router";
 import React from "react";
 
 export default function ProductDetail({ data }) {
-  const router = useRouter();
   return (
     <>
       <ProductsDetails product={data.product} />
-      {/* <Comments /> */}
+      <Comments comments={data.comments} />
     </>
   );
 }
@@ -29,15 +27,21 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const { params } = context;
 
-  const response = await fetch(
+  const productResponse = await fetch(
     `http://localhost:4000/menu/${params.productId}`
   );
-  const product = await response.json();
+  const product = await productResponse.json();
+
+  const commentsResponse = await fetch(
+    `http://localhost:4000/comments?productID=${params.productId}`
+  );
+  const comments = await commentsResponse.json();
 
   return {
     props: {
       data: {
         product,
+        comments,
       },
     },
     revalidate: 60 * 60 * 12,

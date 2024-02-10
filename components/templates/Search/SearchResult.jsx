@@ -11,8 +11,8 @@ export const SearchResult = ({ searchResult }) => {
             {searchResult
               .filter((item) => item.type === "hot")
               .slice(0, 3)
-              .map((item) => (
-                <ProductCard item={item} />
+              .map((item, index) => (
+                <ProductCard item={item} key={index} />
               ))}
           </div>
           <div className="col-lg-6">
@@ -20,8 +20,8 @@ export const SearchResult = ({ searchResult }) => {
             {searchResult
               .filter((item) => item.type === "cold")
               .slice(0, 3)
-              .map((item) => (
-                <ProductCard item={item} />
+              .map((item, index) => (
+                <ProductCard item={item} key={index} />
               ))}
           </div>
         </div>

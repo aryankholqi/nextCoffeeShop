@@ -37,6 +37,7 @@ export default function About() {
           <div className="col-lg-4 py-5 py-lg-0" style={{ minHeight: 500 }}>
             <div className="position-relative h-100">
               <Image
+                alt=""
                 src={"/images/about.png"}
                 layout="fill"
                 objectFit="cover"

@@ -19,8 +19,12 @@ const ProductsDetails = ({ product }) => {
         <h4 className="text-white mb-3">{product.title}</h4>
         <hr style={{ borderColor: "white" }} />
         <div className={styles.stars}>
-          {Array.from({ length: Math.floor(product.score) }, (_, i) => (
-            <FontAwesomeIcon className={styles.fill_star} icon={faStar} />
+          {Array.from({ length: Math.floor(product.score) }, (_, index) => (
+            <FontAwesomeIcon
+              className={styles.fill_star}
+              icon={faStar}
+              key={index}
+            />
           ))}
         </div>
         <div className={styles.price_details}>
